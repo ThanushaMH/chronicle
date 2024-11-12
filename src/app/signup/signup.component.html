@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="fields">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <h5>Sign-up</h5>
+    
+    <div>
+      <label>First Name:</label>
+      <input formControlName="firstName" [ngClass]="{'error': signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched}">
+      <div *ngIf="signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched">Invalid first name.</div>
+    </div>
+
+    <div>
+      <label>Last Name:</label>
+      <input formControlName="lastName" [ngClass]="{'error': signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched}">
+      <div *ngIf="signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched">Invalid last name.</div>
+    </div>
+
+    <div>
+      <label>Username:</label>
+      <input formControlName="username" [ngClass]="{'error': signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched}">
+      <div *ngIf="signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched">Invalid username.</div>
+    </div>
+
+    <div>
+      <label>Email:</label>
+      <input formControlName="email" [ngClass]="{'error': signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched}">
+      <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched">Invalid email.</div>
+    </div>
+    <div>
+    <label>Phone Number:</label>
+    <div class="phone-input-container">
+      
+      <select formControlName="countryCode">
+        <option *ngFor="let code of countryCodes" [value]="code.code">{{code.code}} - {{code.name}}</option>
+      </select>
+      <input formControlName="contactNumber" [ngClass]="{'error': signUpForm.get('contactNumber')?.invalid && signUpForm.get('contactNumber')?.touched}">
+    </div>
+      <div *ngIf="signUpForm.get('contactNumber')?.invalid && signUpForm.get('contactNumber')?.touched">Invalid phone number.</div>
+  </div>
+
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" [ngClass]="{'error': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched}">
+      <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
+        <div *ngIf="signUpForm.get('password')?.errors?.['weakPassword']">Weak password.</div>
+        <div *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required.</div>
+      </div>
+    </div>
+
+    <div>
+      <label>Confirm Password:</label>
+      <input type="password" formControlName="confirmPassword" [ngClass]="{'error': signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched}">
+      <div *ngIf="signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched">Passwords must match.</div>
+    </div>
+
+    <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+    <button type="button" (click)="signUpForm.reset()">Cancel</button>
+  </form>
+</div>
+</div>

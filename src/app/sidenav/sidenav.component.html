@@ -1,0 +1,55 @@
+<!-- <button class="toggle-btn" (click)="toggleSidenav()">
+  <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+</button>
+<div class="sidenav" *ngIf="!isCollapsed">
+  <ul>
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/my-entries">My Entries</a></li>
+    <li><a routerLink="/profile-settings">Profile</a></li>
+    <li><a routerLink="/about-us">About us</a></li>
+    <li><a routerLink="/message">Trial message</a></li>
+  </ul>
+</div> -->
+
+<!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon style="color: white;">menu</mat-icon> 
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>home</mat-icon>
+    <span><a routerLink="/home">Home</a></span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>pages</mat-icon>
+    <span><a routerLink="/my-entries">My Entries</a></span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    <span><a routerLink="/profile-settings">Profile</a></span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>info</mat-icon>
+    <span><a routerLink="/about-us">About us</a></span>
+  </button>
+</mat-menu> -->
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon style="color: white;">menu</mat-icon> 
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/home">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+  <button mat-menu-item routerLink="/my-entries">
+    <mat-icon>pages</mat-icon>
+    <span>My Entries</span>
+  </button>
+  <button mat-menu-item routerLink="/profile-settings">
+    <mat-icon>account_circle</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item routerLink="/about-us">
+    <mat-icon>info</mat-icon>
+    <span>About Us</span>
+  </button>
+</mat-menu>

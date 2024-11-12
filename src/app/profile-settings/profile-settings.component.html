@@ -1,0 +1,47 @@
+<div class="profile-settings">
+  <div class="profile-picture">
+    <img src="assets/default-pfp.jpg" alt="Profile Picture" />
+    <input
+      type="text"
+      [(ngModel)]="userName"
+      placeholder="Edit User Name"
+      class="user-name"
+    />
+  </div>
+
+  <div class="details-container">
+    <div class="left-side">
+      <h3>Edit User Personal Details</h3>
+      <input
+        type="text"
+        [(ngModel)]="firstName"
+        placeholder="First Name"
+      />
+      <input
+        type="text"
+        [(ngModel)]="lastName"
+        placeholder="Last Name"
+      />
+    </div>
+
+    <div class="right-side">
+      <h3>Edit User Contact Details</h3>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Email"
+      />
+      <input
+        type="text"
+        [(ngModel)]="contactNumber"
+        placeholder="Contact Number"
+      />
+      <a routerLink="/change-password">
+        <button (click)="navigateToChangePassword()">Change Password</button>
+        </a>
+
+  <div class="buttons">
+    <button (click)="saveChanges()">Save Changes</button>
+    <a routerLink="/"><button (click)="cancel()">Cancel</button></a>
+  </div>
+</div>

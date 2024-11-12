@@ -1,0 +1,33 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <label for="username">Username</label>
+    <input id="username" formControlName="username" type="text" />
+
+    <label for="password">Password</label>
+    <div class="password-field">
+      <input
+        id="password"
+        formControlName="password"
+        [type]="passwordVisible ? 'text' : 'password'"
+      />
+      <button
+        type="button"
+        class="eye-icon"
+        (click)="togglePasswordVisibility()"
+      >
+        {{ passwordVisible ? '👁️' : '🙈' }}
+      </button>
+    </div>
+
+    <div *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched)">
+      <small class="error">Please fill in both fields</small>
+    </div>
+
+    <!-- Router link should be here -->
+    <a routerLink="/reset-password" class="forgot-password">Forgot Password</a>
+
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

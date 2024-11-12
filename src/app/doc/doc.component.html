@@ -1,0 +1,65 @@
+<div class="doc-container">
+  <!-- Header with Title, Save, and Share button -->
+  <div class="header">
+    <input type="text" placeholder="Enter Title" required [(ngModel)]="docTitle" />
+    <button class="save-button" (click)="saveDoc()">Save</button>
+    
+  </div>
+
+  <div class="content">
+    <!-- Left side: Editable Dotted Ruled Sheet -->
+    <div class="left-pane">
+      <div class="ruled-sheet" contenteditable="true">
+        <div class="line" *ngFor="let line of [].constructor(50)"></div>
+      </div>
+    </div>
+
+    <!-- Right side: Collapsible Media Panel -->
+    <div class="right-pane" [class.collapsed]="!isMediaPanelOpen">
+      <button class="expand-btn" (click)="toggleMediaPanel()">
+        {{ isMediaPanelOpen ? '− Hide Media' : '+ Add Media' }}
+      </button>
+
+      <div *ngIf="isMediaPanelOpen">
+        <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" />
+        <button (click)="fileInput.click()">Import Media</button>
+
+        <div *ngFor="let media of mediaFiles; let i = index" class="file-preview" (click)="openOverlay(media)">
+          <div>
+            <button (click)="removeMedia(i); $event.stopPropagation()">−</button>
+            <ng-container *ngIf="media.type.startsWith('image'); else otherFile">
+              <img [src]="media.url" alt="Imported File Thumbnail" />
+            </ng-container>
+            <ng-template #otherFile>
+              <span>{{ media.name }}</span>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  
+
+  <!-- Media Overlay for large view -->
+  <div *ngIf="isOverlayOpen" class="overlay">
+    <div class="overlay-content">
+      <button class="close-btn" (click)="closeOverlay()">X</button>
+      <ng-container *ngIf="overlayMedia">
+        <ng-container *ngIf="overlayMedia.type.startsWith('image')">
+          <img [src]="overlayMedia.url" alt="Large Media View" />
+        </ng-container>
+        <ng-container *ngIf="overlayMedia.type.startsWith('video')">
+          <video [src]="overlayMedia.url" controls></video>
+        </ng-container>
+        <ng-container *ngIf="overlayMedia.type.startsWith('audio')">
+          <audio [src]="overlayMedia.url" controls></audio>
+        </ng-container>
+        <ng-container *ngIf="overlayMedia.type === 'application/pdf'">
+          <iframe [src]="overlayMedia.url" width="100%" height="500px"></iframe>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

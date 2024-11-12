@@ -1,0 +1,21 @@
+.my-entries-container {
+    text-align: center;
+    margin: 20px;
+    padding: bottom 40px;
+    padding-top: 40px;
+  }
+  
+  .button-container button {
+    margin: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color:white;
+    border:1px solid black;
+    color: black;
+  }
+  .button-container button:hover {
+    background-color:black; /* Change to your desired hover color */
+    color: white; /* Change text color on hover */
+  }

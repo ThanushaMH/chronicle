@@ -1,0 +1,11 @@
+<div class="journal-entry">
+  <h2>Journal Entry</h2>
+  <input placeholder="Title" type="text">
+  <textarea placeholder="Write your entry here..."></textarea>
+  <button mat-button (click)="toggleMedia()">Add Media</button>
+  <div *ngIf="showMedia" class="media-upload">
+    <label>Attach Image/Video:</label>
+    <input type="file">
+  </div>
+  <button mat-button>Save</button>
+</div>

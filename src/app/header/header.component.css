@@ -1,0 +1,43 @@
+header { 
+ /* display: flex;*/
+  justify-content: space-between;
+  padding: 1rem; /* Adjust padding as needed */
+  position: relative; /* Ensure it stays on top */
+  margin: 0; /* Remove margin */
+  background:black;
+  width: 100%;
+  height: 30px;
+  font-family: 'papyrus', sans-serif;
+  font-size: 24px;
+  color:white;
+  top:0;
+  left:0;
+  right:0;
+  
+}
+
+
+.header-icons{
+  display: flex;
+  gap: 0.5rem;
+  padding-right: 20px;
+}
+.header-icons button{
+  margin-left: 10px; 
+  padding: 10px 20px; 
+  border: 1px ; 
+  border-radius: 30px; 
+  background-color:black; 
+  color: white; 
+  cursor: pointer; 
+  transition: background-color 0.3s;
+  border-color: white;
+  
+}
+.header-icons button:hover {
+  background-color:white; 
+  color:black;
+}
+.logo img {
+  height: 20px; /* Adjust as needed */
+}

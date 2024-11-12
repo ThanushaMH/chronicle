@@ -1,0 +1,64 @@
+.sidenav {
+  height: 100%; /* Full-height */
+  transition: transform 0.3s;
+  width: 150px; /* Set the width of the sidenav */
+  position: absolute; /* Fixed position */
+  top: 0; /* Stay at the top */
+  left: 0; /* Stay on the left */
+  background-color: black ; /* Sidenav background color */
+  padding-top: 50px; /* Some padding */
+  /* Some padding */
+  display: flex;
+  overflow: hidden;
+  transform: translateX(-150px); /* Initially hidden (off-screen) */
+}
+
+.toggle-btn {
+  position:fixed;
+  top: 60px;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333; /* Adjust as needed */
+  font-size: 24px;
+  transition: left 0.3s;
+}
+/* Show sidenav when not collapsed */
+.sidenav:not(.collapsed) {
+  transform: translateX(0); /* Move sidenav fully into view */
+}
+
+/* Move the toggle button next to the sidenav when expanded */
+.sidenav:not(.collapsed) + .toggle-btn {
+  left: 160px; /* Place toggle button next to expanded sidenav */
+}
+
+
+.sidenav ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 16px; /* Remove default padding */
+  padding-left: 8px;
+}
+
+.sidenav ul li {
+  align-content: center;
+  padding: 4px 8px; /* Some padding for each item */
+}
+
+.sidenav ul li a {
+  padding: 10px;
+  color:white; /* Link color */
+  text-decoration: none; /* Remove underline */
+  display: block; /* Make the whole area clickable */
+  border:1px;
+  border-radius: 30px;
+  
+  
+}
+
+.sidenav ul li a:hover {
+  background-color:white; /* Change color on hover */
+  border-color:black ;
+  color: black;
+}

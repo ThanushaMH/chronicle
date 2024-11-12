@@ -1,0 +1,23 @@
+.about-us-container {
+    padding: 50px;
+    padding-left: 200px;
+    margin: 0 auto; /* Center the container */
+    text-align: center;
+    
+  }
+  
+  .grid-container {
+    display: grid;   /* 3 rows */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, 1fr); /* 3 rows, automatic height */
+    max-width: 500px;
+    gap: 20px; /* Space between grid items */
+    justify-items: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+  }
+  .grid-container img {
+    max-width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+  
+  

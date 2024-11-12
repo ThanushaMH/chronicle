@@ -1,0 +1,104 @@
+/* Full body styling to support centering */
+body, html {
+  margin: 0; /* Remove default margins */
+  height: 100%; /* Full height for centering */
+}
+
+/* Login container styling */
+.login-container {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh; /* Full viewport height */
+  background-color: black; /* Light background color */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 30px; /* Rounded corners */
+  padding: 20px;
+  width: 300px; /* Fixed width for the container */
+  margin: auto; /* Center the container horizontally */
+  position: absolute; /* Allow positioning */
+  top: 50%; /* Position from top */
+  left: 50%; /* Position from left */
+  transform: translate(-50%, -50%); /* Offset the position to center */
+  color:white;
+}
+
+/* Title styling */
+h1 {
+  margin-bottom: 50px;
+  font-family: 'Times New Roman', serif; /* Font styling */
+  color: #333; /* Dark text color */
+}
+
+/* Label styling */
+label {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color:white;
+}
+
+/* Input field styling */
+input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 30px; /* Rounded corners */
+  font-size: 16px;
+}
+
+/* Password field styling */
+.password-field {
+  position: relative;
+}
+
+/* Eye icon button styling */
+.eye-icon {
+  position: absolute;
+  right:5px;
+  top: 15%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888; /* Icon color */
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Hyperlink styling */
+.forgot-password {
+  display: block;
+  margin-bottom: 20px;
+  color: #2074cd; /* Bootstrap primary color */
+  text-decoration: underline;
+  cursor:pointer;
+}
+
+/* Button styling */
+button {
+  gap:0.5rem;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: black; /* Primary button color */
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color:white; /* Darker shade on hover */
+  color:black;
+}

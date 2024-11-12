@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+/*@import '~@angular/material/prebuilt-themes/indigo-pink.css';*/
+/* Ensure the body and html take full height */
+@font-face {
+  font-family: 'papyrus';
+  src: url('./assets/fonts/papyrus-webfont.woff2') format('woff2'),
+  url('./assets/fonts/papyrus-webfont.woff') format('woff');
+  font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  font-family: 'papyrus', sans-serif;
+}
+
+/* Header styles */
+header {
+  font-family: 'papyrus', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color:whitesmoke;
+  position: relative; /* Fixes header to the top */
+  width: 100%; /* Ensure header spans full width */
+  z-index: 1000; /* Bring header above other content */
+  color: black;
+
+}
+
+/* Sidenav styles */
+aside {
+  width: 200px; /* Adjust width as needed */
+  height: calc(100vh - 80px); /* Adjust height based on header height */
+  background: #f1f1f1; /* Background color */
+  position: fixed; /* Keeps sidenav fixed while scrolling */
+  top: 80%; /* Position directly below the header */
+  left: 0; /* Align to the left */
+  margin: 0; /* Ensure no margin */
+  padding: 0; /* Ensure no padding */
+  /* overflow-y: auto; Allow scrolling if sidenav content exceeds height */
+  overflow: hidden;
+  color:black;
+}
+
+/* Main content styles */
+.main-content {
+  margin-left: 150px; /* Match this with the width of the sidenav */
+  padding-top: 40px; /* Optional: padding for content */
+  height: calc(100vh - 80px); /* Adjust height based on header */
+  overflow-y: auto; /* Allow scrolling if content exceeds viewport */
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  position: relative; /* Allow it to push down with content */
+  bottom: 0;
+  width: 100%;
+  color: black;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  aside {
+    width: 100%; /* Full width on smaller screens */
+    height: auto; /* Reset height */
+    position: relative; /* Reset position for small screens */
+    top: 0; /* Reset top positioning */
+  }
+
+  .main-content {
+    margin-left: 0; /* Reset margin for smaller screens */
+  }
+}
+

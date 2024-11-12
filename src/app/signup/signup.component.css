@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* Prevents vertical scrolling */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  align-content: center;
+}
+
+.container {
+  align-items: center;
+  
+  align-content: center;
+  margin-top: 80px; /* Offset by the height of the header + some extra space */
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  border: 1px solid black;
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+  box-sizing: border-box;
+}
+
+.h2{
+  color: white;
+}
+input, select {
+  display: block;
+  max-width: 350px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+}
+
+input.error {
+  border: 1px solid red;
+}
+
+input.valid {
+  border: 1px solid green;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 30px;
+}
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between the select and input fields */
+}
+
+.phone-input-container select,
+.phone-input-container input {
+  flex: 1; /* Adjusts width if you want them to have equal width */
+}
+
+.phone-input-container select{
+  max-width:20%;
+}
+
+.phone-input-container input {
+  max-width:80%;
+}
+

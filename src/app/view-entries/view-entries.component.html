@@ -1,0 +1,34 @@
+<div class="view-entries-container">
+  <!-- Search Bar -->
+  <input
+    type="text"
+    [(ngModel)]="searchTitle"
+    placeholder="Search by title..."
+    (input)="onSearchTitle()"
+    class="search-bar"
+  />
+
+  <div class="content">
+    <!-- Calendar without Container -->
+    <label for="calendar">Select Date:</label>
+    <div class="calendar">
+      <input
+        type="date"
+        id="calendar"
+        max="{{ currentDate }}"
+        [(ngModel)]="selectedDate"
+        (change)="onSelectDate(selectedDate)"
+      />
+    </div>
+
+    <div class="last-entries-section">
+      <h3>Last 10 Entries</h3>
+      <ul>
+        <li *ngFor="let entry of lastTenEntries">
+          <strong>{{ entry.title }}</strong> <br />
+          <small>{{ entry.createdDate }}</small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+/* terms-of-service.component.css */
+.terms-of-service {
+    padding: 20px;
+    padding-top: 40px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .terms-of-service h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+  
+  .terms-of-service h2 {
+    font-size: 1.5em;
+    margin-top: 1em;
+  }
+  
+  .terms-of-service p {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+  .terms-of-service h6 {
+    text-align: right;
+    margin-top: 1em;
+  }
+  

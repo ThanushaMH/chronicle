@@ -1,0 +1,21 @@
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  
+  .message-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .message-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  

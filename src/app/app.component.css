@@ -1,0 +1,35 @@
+/* Main content styles */
+.main-content {
+  margin-left: 200px; /* Match this with the width of the sidenav */
+  padding: 20px; /* Add padding for aesthetics */
+  height: calc(100vh - 80px); /* Adjust height based on header */
+  overflow-y: auto; /* Allow scrolling if content exceeds viewport */
+  overflow-x: hidden;
+  max-width: 100%; /* Ensure child elements do not exceed the width of .main-content */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  
+}
+
+/* Optionally, you can reset margins and paddings */
+html, body {
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  height: 100%;
+}
+.parent-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow child elements to wrap */
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0; /* Adjust margin for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}
+
+.container {
+  padding: 20px;  
+  background-color: lightgray;
+  min-height: 81vh;
+}
