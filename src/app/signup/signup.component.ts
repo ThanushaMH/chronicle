@@ -14,6 +14,8 @@ import { SignupService } from '../services/signup.service'; // Import the servic
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
+  passwordVisible: boolean = false;
+  passwordVisibility: boolean = false;
 
   countryCodes = [
     { code: '+61', name: 'Australia' },
@@ -60,6 +62,14 @@ export class SignUpComponent {
     return group.get('password')?.value === group.get('confirmPassword')?.value ? null : { mismatch: true };
   }
 
+  togglePasswordVisibility() {
+    this.passwordVisibility = !this.passwordVisibility;
+  }
+
+  togglePasswordVisible() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
   onSubmit() {
     if (this.signUpForm.valid) {
       // Encode the form data as JSON
@@ -72,10 +82,26 @@ export class SignUpComponent {
       // Send the encoded data to the backend
       this.signupService.signUp(encodedData ).subscribe(
         (response) => {
-          console.log('User signed up successfully:', response);
+          console.log('Response from backend:', response);  // Log the entire response object
+          if (response.status === 200) {
+            alert('User successfully signed up! Please login now.');
+            // You can navigate to the home page here if you want to
+            // this.router.navigate(['/home']);
+          }else {
+            // Handle other success cases or unexpected status codes
+            alert('Unexpected response received from server.');
+          }
         },
         (error) => {
-          console.error('Error during sign up:', error);
+          console.log('Error response:', error);  // Log the error if it's happening
+          // Handle error response (status 400 or other errors)
+          if (error.status === 400) {
+            alert('User sign up failed.');
+          } else if (error.status >= 500) {
+            alert('Server error. Please try again later.');
+          }  else {
+            alert('An unexpected error occurred.');
+          }
         }
       );
     }

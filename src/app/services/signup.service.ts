@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap, delay } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,7 @@ export class SignupService {
 
   constructor(private http: HttpClient) {}
 
-  signUp(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+  signUp(data: any): Observable<HttpResponse<any>> {
+    return this.http.post<HttpResponse<any>>(this.apiUrl, data, { observe: 'response' });
   }
 }

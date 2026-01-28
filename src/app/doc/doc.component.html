@@ -3,27 +3,31 @@
   <div class="header">
     <input type="text" placeholder="Enter Title" required [(ngModel)]="docTitle" />
     <button class="save-button" (click)="saveDoc()">Save</button>
-    
   </div>
 
   <div class="content">
     <!-- Left side: Editable Dotted Ruled Sheet -->
     <div class="left-pane">
+      <!-- Add current date and time as non-editable text in the first line -->
+      <div class="line">
+        <span>{{ currentDateTime }}</span>
+      </div>
+
       <div class="ruled-sheet" contenteditable="true">
         <div class="line" *ngFor="let line of [].constructor(50)"></div>
       </div>
     </div>
 
     <!-- Right side: Collapsible Media Panel -->
-    <div class="right-pane" [class.collapsed]="!isMediaPanelOpen">
-      <button class="expand-btn" (click)="toggleMediaPanel()">
-        {{ isMediaPanelOpen ? '− Hide Media' : '+ Add Media' }}
-      </button>
+    <div class="right-pane" [class.collapsed]="!isMediaVisible">
+      <!-- Fixed Add Media button -->
+      <button class="expand-btn" (click)="fileInput.click()">+ Add Media</button>
 
-      <div *ngIf="isMediaPanelOpen">
-        <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" />
-        <button (click)="fileInput.click()">Import Media</button>
+      <!-- Hidden file input that is triggered by the button -->
+      <input type="file" #fileInput (change)="onFileSelected($event)" multiple style="display: none;" />
 
+      <!-- Display imported media, visible only if isMediaVisible is true -->
+      <div *ngIf="isMediaVisible">
         <div *ngFor="let media of mediaFiles; let i = index" class="file-preview" (click)="openOverlay(media)">
           <div>
             <button (click)="removeMedia(i); $event.stopPropagation()">−</button>
@@ -36,11 +40,13 @@
           </div>
         </div>
       </div>
+
+      <!-- Hide/Show button for media, toggles based on isMediaVisible -->
+      <button *ngIf="mediaFiles.length > 0" (click)="toggleMediaVisibility()">
+        {{ isMediaVisible ? '− Hide Media' : '+ View Media' }}
+      </button>
     </div>
   </div>
-
-  <!-- Share Modal -->
-  
 
   <!-- Media Overlay for large view -->
   <div *ngIf="isOverlayOpen" class="overlay">

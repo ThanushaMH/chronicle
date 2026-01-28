@@ -2,19 +2,22 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 //import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true, // Marking the component as standalone
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css'],
-  imports: [ReactiveFormsModule] // Import ReactiveFormsModule here
+  imports: [ReactiveFormsModule,CommonModule] // Import ReactiveFormsModule here
 })
 export class ResetPasswordComponent {
   resetPasswordForm: FormGroup;
   otpSent = false;
   loading = false;
   message: string = '';
+  passwordVisible: boolean = false;
+  passwordVisibility: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -22,16 +25,30 @@ export class ResetPasswordComponent {
     private router: Router
   ) {
     this.resetPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern( /^(?=.*[a-zA-Z])[a-zA-Z\d._]*@[a-zA-Z]+(\.[a-zA-Z]+)+$/)]],
       otp: ['', Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      newPassword: ['', [Validators.required, Validators.minLength(8), this.strongPassword]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
+  }
+
+  strongPassword(control: any) {
+    const value = control.value;
+    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/;
+    return strongPassword.test(value) ? null : { weakPassword: true };
   }
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('newPassword')?.value === form.get('confirmPassword')?.value 
       ? null : { 'mismatch': true };
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisibility = !this.passwordVisibility;
+  }
+
+  togglePasswordVisible() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   sendOtp() {

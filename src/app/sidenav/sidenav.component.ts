@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
-
+import { AuthService } from '../services/auth.service'; // Import AuthService
 
 @Component({
   selector: 'app-sidenav',
@@ -15,11 +15,15 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class SidenavComponent {
   isCollapsed = true;
-  constructor(private router: Router) {} // Inject Router
+  isLoggedIn = false; // Property to track login state
 
-  goToFriends() {
-    this.router.navigate(['/friends']); // Adjust the path as needed
-  }
+  constructor(private router: Router, private authService: AuthService) {
+    // Subscribe to login status
+    this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+
+  } // Inject Router
 
   goToMyEntries() {
     this.router.navigate(['./my-entries']); // Adjust the path as needed

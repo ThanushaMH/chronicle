@@ -133,3 +133,29 @@
 .save-button {
   background-color: white;
 }
+.file-label {
+  font-size: 0.9em;
+  margin-top: 10px;
+  display: block;
+}
+.error-message {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 5px;
+}
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.media-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.media-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-width: 100px;
+}
+

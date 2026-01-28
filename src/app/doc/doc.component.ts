@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -9,18 +9,23 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule]
 })
-export class DocComponent {
+export class DocComponent implements OnInit {
   docTitle: string = '';
-  isMediaPanelOpen = false;
-  mediaFiles: { name: string; url: string; type: string }[] = [];
+  isMediaVisible = false; // Media visibility flag (initially hidden)
+  mediaFiles: { name: string; url: string; type: string, size: number }[] = []; // Added size property for validation
   isDocSaved: boolean = false;
   
-  isOverlayOpen: boolean = false; // To manage overlay visibility
-  overlayMedia: { name: string; url: string; type: string } | null = null; // Track selected media for overlay
+  isOverlayOpen: boolean = false; // Overlay visibility flag
+  overlayMedia: { name: string; url: string; type: string } | null = null; // Selected media for overlay
+  currentDateTime: string = ''; // Store current date and time
+  totalMediaSize: number = 0; // Track the total size of all media files in bytes
+  maxMediaSize: number = 2 * 1024 * 1024; // 2MB limit
+fileErrorMessage: any;
 
- 
-
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  ngOnInit() {
+    const now = new Date();
+    this.currentDateTime = now.toLocaleString(); // Get current date and time
+  }
 
   saveDoc() {
     if (this.docTitle.trim()) {
@@ -30,28 +35,33 @@ export class DocComponent {
       alert('Please enter a title before saving.');
     }
   }
-  triggerFileInput() {
-    this.fileInput.nativeElement.click();
-  }
-  
 
-  toggleMediaPanel() {
-    this.isMediaPanelOpen = !this.isMediaPanelOpen;
-  }
-
+  // Handle media file selection
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files) {
-      for (let i = 0; i < input.files.length; i++) {
+    let totalSize = this.mediaFiles.reduce((acc, file) => acc + (file as any).size || 0, 0); // Initialize totalSize before the block      
+      if (input.files) {
+        for (let i = 0; i < input.files.length; i++) {
         const file = input.files[i];
+  
+        // Check if adding the current file exceeds the size limit
+        if (totalSize + file.size > 2 * 1024 * 1024) { // 2 MB limit
+          alert('Total file size cannot exceed 2 MB. Please remove some files or choose smaller files.');
+          return; // Stop further processing
+        }
+  
+        totalSize += file.size; // Add file size to the total
+
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
           this.mediaFiles.push({
             name: file.name,
             url: e.target.result,
-            type: file.type
+            type: file.type,
+            size: file.size
           });
+          this.totalMediaSize += file.size; // Update total size after successful addition
         };
 
         reader.readAsDataURL(file);
@@ -59,8 +69,14 @@ export class DocComponent {
     }
   }
 
+  // Toggle media visibility (show/hide)
+  toggleMediaVisibility() {
+    this.isMediaVisible = !this.isMediaVisible;
+  }
+
   removeMedia(index: number) {
-    this.mediaFiles.splice(index, 1);
+    const removedFile = this.mediaFiles.splice(index, 1)[0];
+    this.totalMediaSize -= removedFile.size; // Update total size after removal
   }
 
   openOverlay(media: { name: string; url: string; type: string }) {
@@ -72,6 +88,4 @@ export class DocComponent {
     this.isOverlayOpen = false;
     this.overlayMedia = null;
   }
-
-  
 }

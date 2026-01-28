@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component'; // Adjust path as necessary
-import { ChangePasswordComponent } from './change-password/change-password.component'; // Adjust the path as necessary
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './signup/signup.component';
@@ -13,8 +12,10 @@ import { ViewEntriesComponent } from './view-entries/view-entries.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { MessageComponent } from './message/message.component';
+import { DocViewComponent } from './docview/docview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const routes: Routes = [
   {
@@ -22,8 +23,8 @@ export const routes: Routes = [
     component: ProfileSettingsComponent
   },
   { 
-    path: 'reset-password',
-   component: ResetPasswordComponent },
+    path: 'forgot-password',
+   component: ForgotPasswordComponent },
   {
     path: 'doc',
     component: DocComponent
@@ -31,10 +32,6 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
-  },
-  {
-    path: 'change-password',
-    component: ChangePasswordComponent
   },
   {
     path: 'about-us',
@@ -64,10 +61,14 @@ export const routes: Routes = [
     path: 'message',
     component: MessageComponent
   },
+  { 
+    path: 'doc-view',
+   component: DocViewComponent },
   {
     path: '',
     component: HomeComponent
-  }
+  },
+  
 ];
 
 @NgModule({

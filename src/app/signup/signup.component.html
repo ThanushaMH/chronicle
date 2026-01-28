@@ -39,17 +39,36 @@
   </div>
 
     <div>
-      <label>Password:</label>
-      <input type="password" formControlName="password" [ngClass]="{'error': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched}">
+      <label for="password">Password:</label>
+      <div class="password-field">
+      <input [type]="passwordVisibility ? 'text' : 'password'"  formControlName="password" [ngClass]="{'error': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched}">
+      <button
+        type="button"
+        class="eye-icon"
+        (click)="togglePasswordVisibility()"
+      >
+        {{ passwordVisibility ? '👁️' : '🙈' }}
+      </button>
+      </div>
       <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
         <div *ngIf="signUpForm.get('password')?.errors?.['weakPassword']">Weak password.</div>
         <div *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required.</div>
+        
       </div>
     </div>
 
     <div>
-      <label>Confirm Password:</label>
-      <input type="password" formControlName="confirmPassword" [ngClass]="{'error': signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched}">
+      <label for="password">Confirm Password:</label>
+      <div class="password-field">
+      <input [type]="passwordVisible ? 'text' : 'password'"  formControlName="confirmPassword" [ngClass]="{'error': signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched}">
+      <button
+      type="button"
+      class="eye-icon"
+      (click)="togglePasswordVisible()"
+    >
+      {{ passwordVisible ? '👁️' : '🙈' }}
+    </button>
+    </div>
       <div *ngIf="signUpForm.get('confirmPassword')?.invalid && signUpForm.get('confirmPassword')?.touched">Passwords must match.</div>
     </div>
 

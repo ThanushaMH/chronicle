@@ -41,6 +41,7 @@ export class LoginComponent {
       this.authService.login(loginData.username, loginData.password).subscribe(
         (response) => {
           console.log('Login successful!', response);
+          this.authService.setLoginStatus(true); // Notify login status change
           this.router.navigate(['./home']); // Navigate to home or desired page after successful login
         },
         (error) => {
